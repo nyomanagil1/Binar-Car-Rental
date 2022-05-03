@@ -1,0 +1,38 @@
+#section-footer {
+  height: 300px;
+  padding-top: 130px;
+}
+
+#section-footer p {
+  margin-bottom: 20px;
+}
+
+#section-footer .link-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 0px;
+  padding-left: 50px;
+}
+
+.sosmed-footer {
+  padding-left: 0px;
+}
+
+.contact-footer p {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.link-footer a {
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+}
+
+.sosmed-img-footer img {
+  margin-right: 16px;
+  height: 32px;
+  width: 32px;
+}

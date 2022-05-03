@@ -1,11 +1,8 @@
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { DownOutlined} from '@ant-design/icons';
 import { Button, Dropdown, Menu, Space, Table } from 'antd';
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/Navbar/Navbar';
+import React from 'react';
 
 function Dashboard() {
-  const navigate = useNavigate();
   const menu = (
     <Menu
       items={new Array(11).fill(null).map((_, index) => {
@@ -189,14 +186,6 @@ function Dashboard() {
   function onChange(pagination, filters, sorter, extra) {
     console.log('params', pagination, filters, sorter, extra);
   }
-
-  const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    if (!token) {
-      navigate('login');
-    }
-  }, []);
 
   return (
     <>

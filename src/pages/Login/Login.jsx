@@ -1,4 +1,4 @@
-import { AutoComplete, Button, Col, Input, Row } from 'antd';
+import { Button, Col, Input, Row } from 'antd';
 import React, { useState } from 'react';
 import './login.css';
 import carImage from './img/img-mobil.png';
@@ -52,15 +52,16 @@ function Login() {
   return (
     <>
       <Row>
-        <Col span={16}>
-          <img src={carImage} alt="" />
+        <Col lg={{ span: 16 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
+          <img className="car-img" src={carImage} alt="" />
         </Col>
-        <Col span={8} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Col lg={{ span: 8 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div>
             <div className="logo" />
             <h1>Welcome, Admin BCR</h1>
             <p>Email</p>
             <Input
+              required
               style={{ marginBottom: '1rem' }}
               placeholder="Email"
               value={loginData.email}
@@ -73,6 +74,7 @@ function Login() {
             />
             <p>Password</p>
             <Input.Password
+              required
               style={{ marginBottom: '1rem' }}
               placeholder="Password"
               value={loginData.password}
@@ -95,7 +97,9 @@ function Login() {
             >
               Sign In
             </Button>
-            <a href="register">Doesn't have an account? Register</a>
+            <p style={{ textAlign: 'center' }}>
+              Don't have an account?<a href="register"> Sign Up for free</a>
+            </p>
           </div>
         </Col>
       </Row>

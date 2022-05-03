@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
+import ProtectedRoute from './components/PrivateRoute/PrivateRoute';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Landing from './pages/Landing/Landing';
 import Login from './pages/Login/Login';
@@ -12,10 +13,12 @@ function App() {
     <Routes>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
-      <Route path="/" element={<Navbar />}>
+      <Route element={<ProtectedRoute />}>
         <Route index element={<Landing />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="*" element={<div>Not Found</div>} />
+        <Route path="/" element={<Navbar />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="*" element={<div>Not Found</div>} />
+        </Route>
       </Route>
     </Routes>
   );

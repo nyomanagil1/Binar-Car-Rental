@@ -17,3 +17,49 @@ img {
 p {
   margin-bottom: 0.625rem;
 }
+
+@media (max-width: 991.98px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 820px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 575.98px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 540px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 414px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 412px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 360px) {
+  .car-img {
+    display: none;
+  }
+}
+@media (max-width: 375px) {
+  .car-img {
+    display: none;
+  }
+}
