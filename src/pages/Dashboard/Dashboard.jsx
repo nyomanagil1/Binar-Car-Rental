@@ -1,6 +1,6 @@
 import { DownOutlined} from '@ant-design/icons';
-import { Button, Dropdown, Menu, Space, Table } from 'antd';
-import React from 'react';
+import { Button, Dropdown, Menu, message, Space, Table } from 'antd';
+import React, { useEffect } from 'react';
 
 function Dashboard() {
   const menu = (
@@ -186,6 +186,12 @@ function Dashboard() {
   function onChange(pagination, filters, sorter, extra) {
     console.log('params', pagination, filters, sorter, extra);
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      message.success(`Welcome, ${localStorage.getItem('role')}`);
+    }, 1000);
+  }, []);
 
   return (
     <>

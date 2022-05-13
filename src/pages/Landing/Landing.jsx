@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './landing.css';
 import mobil from './img/mobil.png';
 import logo from './img/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import { message } from 'antd';
 
 function Landing() {
   const navigate = useNavigate();
@@ -11,6 +12,12 @@ function Landing() {
     localStorage.clear();
     navigate('login', { replace: true });
   }
+  useEffect(() => {
+    setTimeout(() => {
+      message.success(`Welcome, ${localStorage.getItem('role')}`);
+    }, 1000);
+  }, []);
+
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-light pb-5" style={{ backgroundColor: '#f1f3ff' }}>

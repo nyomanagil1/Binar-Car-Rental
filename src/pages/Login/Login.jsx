@@ -1,4 +1,4 @@
-import { Button, Col, Input, Row } from 'antd';
+import { Button, Col, Input, message, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import './login.css';
 import carImage from './img/img-mobil.png';
@@ -13,6 +13,7 @@ function Login() {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
+    role: '',
   });
 
   const responseGoogle = (response) => {
@@ -22,37 +23,34 @@ function Login() {
 
   const handleSubmit = async () => {
     try {
+      if (!loginData.email || !loginData.password) {
+        message.error('Please fill all the fields!');
+      }
       const res = await axios({
         method: 'POST',
-        url: 'https://rent-car-appx.herokuapp.com/api-docs/admin/auth/login',
+        url: 'https://rent-car-appx.herokuapp.com/admin/auth/login',
         data: loginData,
       });
 
-      if (res.status === 200) {
-        localStorage.setItem('token', res.data.token);
-        navigate('/', { replace: true });
+      console.log(res.status);
+
+      if (res.status === 201) {
+        localStorage.setItem('token', res.data.access_token);
+        localStorage.setItem('role', res.data.role);
+        if (res.data.role === 'admin') {
+          navigate('/dashboard', { replace: true });
+        }
+        if (res.data.role === 'user') {
+          navigate('/', { replace: true });
+        }
       }
     } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleData = async () => {
-    const token = localStorage.getItem('token');
-    try {
-      const res = await axios({
-        method: 'POST',
-        url: 'https://rent-car-appx.herokuapp.com/api-docs/admin/auth/login',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (res.status === 200) {
-        localStorage.setItem('token', res.data.token);
+      if (error.response.status === 404) {
+        message.error('Login Failed!');
       }
-    } catch (error) {
-      console.log(error);
+      if (error.response.status === 400) {
+        message.error('Login Failed! Wrong Password!');
+      }
     }
   };
 
@@ -80,7 +78,7 @@ function Login() {
             <Input
               required
               style={{ marginBottom: '1rem' }}
-              placeholder="Email"
+              placeholder="admin@mail.com / user@user.com"
               value={loginData.email}
               onChange={(e) =>
                 setLoginData({
@@ -93,7 +91,7 @@ function Login() {
             <Input.Password
               required
               style={{ marginBottom: '1rem' }}
-              placeholder="Password"
+              placeholder="Password = 123456"
               value={loginData.password}
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               onChange={(e) =>
@@ -105,7 +103,6 @@ function Login() {
             />
             <Button
               onClick={() => {
-                handleData();
                 handleSubmit();
               }}
               type="primary"

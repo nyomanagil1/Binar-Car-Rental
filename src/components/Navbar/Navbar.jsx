@@ -61,7 +61,7 @@ function Navbar() {
             <Dropdown overlay={menu} trigger={['click']}>
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
-                  Unis Badri
+                  {localStorage.getItem('role')}
                   <DownOutlined />
                 </Space>
               </a>
