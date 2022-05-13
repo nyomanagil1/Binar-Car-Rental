@@ -18,6 +18,13 @@ p {
   margin-bottom: 0.625rem;
 }
 
+.google-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
 @media (max-width: 991.98px) {
   .car-img {
     display: none;

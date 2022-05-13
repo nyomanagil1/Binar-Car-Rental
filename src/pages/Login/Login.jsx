@@ -1,10 +1,12 @@
 import { Button, Col, Input, Row } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './login.css';
 import carImage from './img/img-mobil.png';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import GoogleLogin from 'react-google-login';
+import { gapi } from 'gapi-script';
 
 function Login() {
   const navigate = useNavigate();
@@ -13,11 +15,16 @@ function Login() {
     password: '',
   });
 
+  const responseGoogle = (response) => {
+    localStorage.setItem('token', response.tokenObj.id_token);
+    navigate('/', { replace: true });
+  };
+
   const handleSubmit = async () => {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'https://reqres.in/api/login',
+        url: 'https://rent-car-appx.herokuapp.com/api-docs/admin/auth/login',
         data: loginData,
       });
 
@@ -35,7 +42,7 @@ function Login() {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'https://reqres.in/api/login',
+        url: 'https://rent-car-appx.herokuapp.com/api-docs/admin/auth/login',
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,6 +55,16 @@ function Login() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: '729006514227-ss4vubs0l5ttu2n9jmcca84o6nhlauqc.apps.googleusercontent.com',
+        scope: '',
+      });
+    }
+    gapi.load('client:auth2', start);
+  }, []);
 
   return (
     <>
@@ -97,6 +114,9 @@ function Login() {
             >
               Sign In
             </Button>
+            <div className="google-login">
+              <GoogleLogin clientId="729006514227-ss4vubs0l5ttu2n9jmcca84o6nhlauqc.apps.googleusercontent.com" buttonText="Login with Google" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'} />
+            </div>
             <p style={{ textAlign: 'center' }}>
               Don't have an account?<a href="register"> Sign Up for free</a>
             </p>
