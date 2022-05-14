@@ -55,12 +55,12 @@ function Login() {
   };
 
   useEffect(() => {
-    function start() {
+    const start = () => {
       gapi.client.init({
         clientId: '729006514227-ss4vubs0l5ttu2n9jmcca84o6nhlauqc.apps.googleusercontent.com',
         scope: '',
       });
-    }
+    };
     gapi.load('client:auth2', start);
   }, []);
 
