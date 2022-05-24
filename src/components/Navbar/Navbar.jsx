@@ -41,11 +41,13 @@ function Navbar() {
               key: '1',
               icon: <HomeOutlined />,
               label: 'Dashboard',
+              onClick: () => navigate('dashboard'),
             },
             {
               key: '2',
               icon: <CarOutlined />,
               label: 'Cars',
+              onClick: () => navigate('cars'),
             },
           ]}
         />
