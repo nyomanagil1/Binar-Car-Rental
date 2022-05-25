@@ -31,7 +31,7 @@ function Navbar() {
   return (
     <Layout>
       <Sider className="sider" style={{ height: '100vh' }} trigger={null} collapsible collapsed={state}>
-        <div className="logo" />
+        <div className="logo" onClick={() => navigate('/')} />
         <Menu
           className="sidermenu"
           mode="inline"
@@ -47,7 +47,7 @@ function Navbar() {
               key: '2',
               icon: <CarOutlined />,
               label: 'Cars',
-              onClick: () => navigate('cars'),
+              onClick: () => navigate('list-car'),
             },
           ]}
         />
@@ -58,7 +58,7 @@ function Navbar() {
             {setState ? <MenuOutlined /> : <MenuFoldOutlined />}
           </div>
           <div className="user">
-            <Search placeholder="input search text" allowClear enterButton="Search" size="large" style={{ maxWidth: '300px', marginRight: '20px' }} />
+            <Search placeholder="Search" allowClear enterButton="Search" size="large" style={{ maxWidth: '300px', marginRight: '20px' }} />
             <Avatar style={{ color: '#151515', backgroundColor: '#CFD4ED', marginRight: '7px' }}>U</Avatar>
             <Dropdown overlay={menu} trigger={['click']}>
               <a onClick={(e) => e.preventDefault()}>

@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from './components/PrivateRoute/PrivateRoute';
+import AddNewCar from './pages/AddNewCar/AddNewCar';
+import CarDetail from './pages/CarDetail/CarDetail';
 import Cars from './pages/Cars/Cars';
 import CarsCustomer from './pages/CarsCustomer/CarsCustomer';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -18,9 +20,11 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route index element={<Landing />} />
         <Route path="cars" element={<CarsCustomer />} />
+        <Route path="detail" element={<CarDetail />} />
         <Route path="/" element={<Navbar />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="list-car" element={<Cars />} />
+          <Route path="add-car" element={<AddNewCar />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Route>
       </Route>

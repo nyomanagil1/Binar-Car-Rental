@@ -16,6 +16,7 @@
   height: 32px;
   margin: 16px;
   background: #cfd4ed;
+  cursor: pointer;
 }
 
 .site-layout .site-layout-background {

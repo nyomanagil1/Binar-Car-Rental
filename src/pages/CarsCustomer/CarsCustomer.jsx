@@ -1,7 +1,7 @@
 import React from 'react';
 import './carsCustomer.css';
 import logo from '../Landing/img/logo.svg';
-import carImage from '../Cars/img/fi_car.png';
+import customerCarImage from '../Cars/img/fi_car.png';
 import peopleImage from './img/carpeople.png';
 import calendarImage from './img/carcalendar.png';
 import typeImage from './img/cartype.png';
@@ -61,7 +61,7 @@ function CarsCustomer() {
             <div class="card card-mobil h-100 p-1">
               <div class="card-body p-4 h-100">
                 <div className="d-flex justify-content-center">
-                  <img class="car-img" src={carImage} alt="" />
+                  <img class="customer-car-img" src={customerCarImage} alt="" />
                 </div>
                 <p class="car-name">Nama/Tipe Mobil</p>
                 <p class="car-price ">Rp. 430.000 / hari</p>
@@ -79,7 +79,9 @@ function CarsCustomer() {
                 </p>
               </div>
               <div className="card-mobil-footer">
-                <button class="choose-btn">Pilih Mobil</button>
+                <button onClick={() => navigate('/detail')} class="choose-btn">
+                  Pilih Mobil
+                </button>
               </div>
             </div>
           </div>

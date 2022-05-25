@@ -9,8 +9,10 @@ import './cars.css';
 import { Breadcrumb, Button, Card } from 'antd';
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 function Cars() {
+  const navigate = useNavigate();
   const { Title, Text } = Typography;
   const [size, setSize] = useState('large');
   return (
@@ -25,7 +27,7 @@ function Cars() {
           </div>
           <div className="col-lg-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 0 }}>
             <h1>List Car</h1>
-            <Button type="primary" icon={<PlusOutlined />} style={{ display: 'flex', alignItems: 'center' }}>
+            <Button onClick={() => navigate('/add-car')} type="primary" icon={<PlusOutlined />} style={{ display: 'flex', alignItems: 'center' }}>
               Add New Car
             </Button>
           </div>

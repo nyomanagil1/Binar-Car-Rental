@@ -1,0 +1,48 @@
+.card-detail {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.card-detail-car {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.card-body h5 {
+  font-weight: 700;
+}
+
+.card-body p {
+  font-size: 16px;
+  color: black;
+}
+
+.card-body li {
+  color: #8a8a8a;
+}
+.btncontinue {
+  height: 36px;
+  background: #5cb85f;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+}
+
+.detail {
+  margin-left: 15px;
+}
+
+.detailmobil {
+  color: #8a8a8a;
+}
+
+.detailtotal p {
+  font-size: 16px;
+}
+
+.detailtotal span {
+  font-size: 16px;
+  font-weight: 700;
+}

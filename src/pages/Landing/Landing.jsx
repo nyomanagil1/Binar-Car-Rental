@@ -62,7 +62,7 @@ function Landing() {
             <div class="col-lg-6 my-auto pt-4">
               <h1>Sewa & Rental Mobil Terbaik di kawasan (Lokasimu)</h1>
               <p>Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.</p>
-              <button type="submit" class="sewabtn">
+              <button type="submit" class="sewabtn" onClick={() => navigate('cars')}>
                 Mulai Sewa Mobil
               </button>
             </div>
@@ -110,7 +110,7 @@ function Landing() {
               <div class="cta-card p-5 my-auto mx-auto">
                 <h1 class="mb-3 mt-3 cta-h1">Sewa Mobil di (Lokasimu) Sekarang</h1>
                 <p class="mx-auto mb-5 section-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <button type="submit" class="sewabtn section-btn">
+                <button type="submit" class="sewabtn section-btn" onClick={() => navigate('cars')}>
                   Mulai Sewa Mobil
                 </button>
               </div>
