@@ -1,4 +1,4 @@
-import { Alert, Button, Col, Input, message, Row } from 'antd';
+import { Button, Col, Input, message, Row } from 'antd';
 import React, { useState } from 'react';
 import './register.css';
 import carImage from './img/img-mobil.png';

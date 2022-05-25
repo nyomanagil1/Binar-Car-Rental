@@ -1,0 +1,73 @@
+body {
+  background-color: #fff;
+}
+
+.card-mobil {
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  position: relative;
+}
+
+.card-tittle {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.card-text {
+  font-size: 14px;
+  width: 220px;
+}
+
+.car-img {
+  width: 270px;
+  height: 160px;
+}
+
+.car-name {
+  font-weight: 400;
+}
+
+.car-price {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.card-mobil-footer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5%;
+}
+
+.choose-btn {
+  border: none;
+  background: #5cb85f;
+  border-radius: 2px;
+  align-items: center;
+  width: 285px;
+  height: 48px;
+  color: white;
+  font-weight: 600;
+}
+
+p > img {
+  margin-right: 10px;
+}
+
+.nav-item {
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+}
+
+.registerbtn {
+  font-weight: 700;
+  padding: 8px 12px;
+  background-color: #5cb85f;
+  color: #fff;
+  border-radius: 2px;
+  width: 81px;
+  height: 36px;
+  align-self: center;
+  border: none;
+}

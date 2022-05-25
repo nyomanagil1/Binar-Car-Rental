@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from './components/PrivateRoute/PrivateRoute';
 import Cars from './pages/Cars/Cars';
+import CarsCustomer from './pages/CarsCustomer/CarsCustomer';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Landing from './pages/Landing/Landing';
 import Login from './pages/Login/Login';
@@ -16,9 +17,10 @@ function App() {
       <Route path="register" element={<Register />} />
       <Route element={<ProtectedRoute />}>
         <Route index element={<Landing />} />
+        <Route path="cars" element={<CarsCustomer />} />
         <Route path="/" element={<Navbar />}>
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="cars" element={<Cars />} />
+          <Route path="list-car" element={<Cars />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Route>
       </Route>
