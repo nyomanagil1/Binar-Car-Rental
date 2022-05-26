@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './carsCustomer.css';
 import logo from '../Landing/img/logo.svg';
-import customerCarImage from '../Cars/img/fi_car.png';
 import peopleImage from './img/carpeople.png';
 import calendarImage from './img/carcalendar.png';
 import typeImage from './img/cartype.png';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import { Image, Spin } from 'antd';
+import Search from '../../components/Search/Search';
+import { LoadingOutlined } from '@ant-design/icons';
+import { getPost } from '../../redux/action/postAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 function CarsCustomer() {
-  const navigate = useNavigate();
   function handleLogout() {
     localStorage.clear();
     navigate('login', { replace: true });
   }
+  const antIcon = <LoadingOutlined style={{ fontSize: 100 }} spin />;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { isLoading, data: post } = useSelector((state) => state.post);
+
+  const handleDetail = (event) => {
+    const id = event.target.value;
+    navigate(`/detail/${id}`);
+  };
+
+  useEffect(() => {
+    dispatch(getPost());
+  }, []);
+
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-light pb-5" style={{ backgroundColor: '#f1f3ff' }}>
@@ -55,36 +73,46 @@ function CarsCustomer() {
           </div>
         </div>
       </nav>
-      <div className="container">
+      <Search />
+      {isLoading && (
+        <div class="d-flex justify-content-center mt-5">
+          <Spin indicator={antIcon} />
+        </div>
+      )}
+      <div className="container pt-3">
         <div className="row">
-          <div class="col-lg-4 my-2">
-            <div class="card card-mobil h-100 p-1">
-              <div class="card-body p-4 h-100">
-                <div className="d-flex justify-content-center">
-                  <img class="customer-car-img" src={customerCarImage} alt="" />
+          {post?.map((item) => {
+            return (
+              <div class="col-lg-4 my-2">
+                <div class="card card-mobil h-100 p-1" key={item.id}>
+                  <div class="card-body p-4 h-100">
+                    <div className="d-flex justify-content-center">
+                      <Image className="customer-car-image" src={item.image} width={500} />
+                    </div>
+                    <p class="car-name">{item.name}</p>
+                    <p class="car-price ">Rp. {new Intl.NumberFormat('id-ID').format(item.price)} / hari</p>
+                    <p class="car-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    <p class="car-passenger">
+                      <img style={{ width: '20px', height: '20px' }} src={peopleImage} alt="" />4 Orang
+                    </p>
+                    <p class="car-type">
+                      <img style={{ width: '20px', height: '20px' }} src={typeImage} alt="" />
+                      Manual
+                    </p>
+                    <p class="car-year">
+                      <img style={{ width: '20px', height: '20px' }} src={calendarImage} alt="" />
+                      Tahun 2020
+                    </p>
+                  </div>
+                  <div className="card-mobil-footer">
+                    <button onClick={handleDetail} value={item.id} class="choose-btn">
+                      Pilih Mobil
+                    </button>
+                  </div>
                 </div>
-                <p class="car-name">Nama/Tipe Mobil</p>
-                <p class="car-price ">Rp. 430.000 / hari</p>
-                <p class="car-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                <p class="car-passenger">
-                  <img style={{ width: '20px', height: '20px' }} src={peopleImage} alt="" />4 Orang
-                </p>
-                <p class="car-type">
-                  <img style={{ width: '20px', height: '20px' }} src={typeImage} alt="" />
-                  Manual
-                </p>
-                <p class="car-year">
-                  <img style={{ width: '20px', height: '20px' }} src={calendarImage} alt="" />
-                  Tahun 2020
-                </p>
               </div>
-              <div className="card-mobil-footer">
-                <button onClick={() => navigate('/detail')} class="choose-btn">
-                  Pilih Mobil
-                </button>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
       <Footer />

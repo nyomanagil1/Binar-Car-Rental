@@ -1,0 +1,26 @@
+#ticket {
+  background-color: #f1f3ff;
+  padding: 0;
+  margin: 0;
+}
+
+.order-breadcrumb span {
+  color: #0d28a6;
+}
+
+.card-invoice-title h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.card-invoice-title p {
+  font-size: 14px;
+}
+
+.card-invoice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46.875rem;
+  height: 18.125rem;
+}

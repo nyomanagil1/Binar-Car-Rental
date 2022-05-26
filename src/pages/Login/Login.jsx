@@ -64,6 +64,15 @@ function Login() {
     gapi.load('client:auth2', start);
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem('role') === 'admin') {
+      navigate('/dashboard', { replace: true });
+    }
+    if (localStorage.getItem('role') === 'user') {
+      navigate('/', { replace: true });
+    }
+  }, []);
+
   return (
     <>
       <Row>

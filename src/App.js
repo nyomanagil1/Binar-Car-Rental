@@ -8,11 +8,12 @@ import CarDetail from './pages/CarDetail/CarDetail';
 import Cars from './pages/Cars/Cars';
 import CarsCustomer from './pages/CarsCustomer/CarsCustomer';
 import Dashboard from './pages/Dashboard/Dashboard';
+import ETicket from './pages/ETicket/ETicket';
 import Landing from './pages/Landing/Landing';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="login" element={<Login />} />
@@ -20,7 +21,8 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route index element={<Landing />} />
         <Route path="cars" element={<CarsCustomer />} />
-        <Route path="detail" element={<CarDetail />} />
+        <Route path="detail/:id" element={<CarDetail />} />
+        <Route path="ticket" element={<ETicket />} />
         <Route path="/" element={<Navbar />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="list-car" element={<Cars />} />
@@ -30,6 +32,6 @@ function App() {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

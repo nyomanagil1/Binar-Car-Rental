@@ -1,4 +1,4 @@
-import { Breadcrumb, Typography } from 'antd';
+import { Breadcrumb } from 'antd';
 import './addNewCar.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './carDetail.css';
 import calendarImage from '../CarsCustomer/img/carcalendar.png';
 import peopleImage from '../CarsCustomer/img/carpeople.png';
 import typeImage from '../CarsCustomer/img/cartype.png';
-import carImage from '../Cars/img/fi_car.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import logo from '../Landing/img/logo.svg';
 import Footer from '../../components/Footer/Footer';
+import { Image } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostByID } from '../../redux/action/postByIDAction';
 
 function CarDetail() {
   const navigate = useNavigate();
@@ -14,6 +16,15 @@ function CarDetail() {
     localStorage.clear();
     navigate('login', { replace: true });
   }
+
+  const dispatch = useDispatch();
+  let { id } = useParams();
+
+  const { isLoading, data: post } = useSelector((state) => state.postByID);
+
+  useEffect(() => {
+    dispatch(getPostByID(id));
+  }, []);
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-light pb-5" style={{ backgroundColor: '#f1f3ff' }}>
@@ -55,77 +66,76 @@ function CarDetail() {
           </div>
         </div>
       </nav>
-      <div className="container pt-4">
-        <div className="row d-flex">
-          <div className="col-lg-8">
-            <div className="card card-detail h-100">
-              <div className="card-body">
-                <h5>Tentang Paket</h5>
-                <p>Include</p>
-                <ul>
-                  <li>Apa saja yang termasuk dalam paket misal durasi max 12 jam</li>
-                  <li>Sudah termasuk bensin selama 12 jam</li>
-                  <li>Sudah termasuk Tiket Wisata</li>
-                  <li>Sudah termasuk pajak</li>
-                </ul>
-                <p>Exclude</p>
-                <ul>
-                  <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                  <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
-                  <li>Tidak termasuk akomodasi penginapan</li>
-                </ul>
-                <h5>Refund, Reschedule, Overtime</h5>
-                <ul>
-                  <li> Tidak termasuk biaya makan sopir Rp 75.000/hari </li>
-                  <li> Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
-                  <li> Tidak termasuk akomodasi penginapan</li>
-                  <li> Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                  <li> Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
-                  <li> Tidak termasuk akomodasi penginapan </li>
-                  <li>Tidak termasuk biaya makan sopir Rp 75.000/hari </li>
-                  <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam </li>
-                  <li>Tidak termasuk akomodasi penginapan </li>
-                </ul>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="container pt-4">
+          <div className="row d-flex">
+            <div className="col-lg-8">
+              <div className="card card-detail h-100">
+                <div className="card-body">
+                  <h5>Tentang Paket</h5>
+                  <p>Include</p>
+                  <ul>
+                    <li>Apa saja yang termasuk dalam paket misal durasi max 12 jam</li>
+                    <li>Sudah termasuk bensin selama 12 jam</li>
+                    <li>Sudah termasuk Tiket Wisata</li>
+                    <li>Sudah termasuk pajak</li>
+                  </ul>
+                  <p>Exclude</p>
+                  <ul>
+                    <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
+                    <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
+                    <li>Tidak termasuk akomodasi penginapan</li>
+                  </ul>
+                  <h5>Refund, Reschedule, Overtime</h5>
+                  <ul>
+                    <li> Tidak termasuk biaya makan sopir Rp 75.000/hari </li>
+                    <li> Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
+                    <li> Tidak termasuk akomodasi penginapan</li>
+                    <li> Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
+                    <li> Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
+                    <li> Tidak termasuk akomodasi penginapan </li>
+                    <li>Tidak termasuk biaya makan sopir Rp 75.000/hari </li>
+                    <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam </li>
+                    <li>Tidak termasuk akomodasi penginapan </li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div className="d-flex justify-content-end">
-              <button type="submit" class="btncontinue mt-3" style={{ minWidth: 178 }}>
-                Lanjutkan Pembayaran
-              </button>
-            </div>
-          </div>
-          <div className="col-lg-4">
-            <div className="card card-detail-car h-100">
-              <div className="card-body">
-                <div class="d-flex justify-content-center py-3 mb-3">
-                  <img className="customer-car-img" src={carImage} alt="" />
-                </div>
-                <h6 class="fw-bold"> Nama/Tipe Mobil </h6>
-                <div className="detailmobil d-flex pb-3">
-                  <p>
-                    <img className="me-1" src={peopleImage} alt="" style={{ width: '20px', height: '20px' }} /> 4 Orang
-                  </p>
-                  <p>
-                    <img className="me-1 detail" src={typeImage} alt="" style={{ width: '20px', height: '20px' }} /> Manual
-                  </p>
-                  <p>
-                    <img className="me-1 detail" src={calendarImage} alt="" style={{ width: '20px', height: '20px' }} /> Tahun 2020
-                  </p>
-                </div>
-                <div className="detailtotal d-flex justify-content-between">
-                  <p>Total</p>
-                  <span>Rp. 430.000 / hari</span>
-                </div>
-                <div>
-                  <button type="submit" class="btncontinue mt-3" style={{ width: '100%' }}>
-                    Lanjutkan Pembayaran
-                  </button>
+            <div className="col-lg-4">
+              <div className="card card-detail-car h-100">
+                <div className="card-body">
+                  <div class="d-flex justify-content-center py-3 mb-3">
+                    <Image className="customer-car-image" src={post.image} />
+                  </div>
+                  <h6 class="fw-bold">{post.name}</h6>
+                  <div className="detailmobil d-flex pb-3">
+                    <p>
+                      <img className="me-1" src={peopleImage} alt="" style={{ width: '20px', height: '20px' }} /> 4 Orang
+                    </p>
+                    <p>
+                      <img className="me-1 detail" src={typeImage} alt="" style={{ width: '20px', height: '20px' }} /> Manual
+                    </p>
+                    <p>
+                      <img className="me-1 detail" src={calendarImage} alt="" style={{ width: '20px', height: '20px' }} /> Tahun 2020
+                    </p>
+                  </div>
+                  <div className="detailtotal d-flex justify-content-between">
+                    <p>Total</p>
+                    <span>Rp. {new Intl.NumberFormat('id-ID').format(post.price)}</span>
+                  </div>
+                  <div>
+                    <button onClick={() => navigate('/ticket')} type="submit" class="btncontinue mt-3" style={{ width: '100%' }}>
+                      Lanjutkan Pembayaran
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <Footer />
     </>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './landing.css';
 import mobil from './img/mobil.png';
 import logo from './img/logo.svg';
@@ -7,8 +7,22 @@ import service from './img/service.png';
 import service1 from './img/service1.png';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import Search from '../../components/Search/Search';
+import { Modal } from 'antd';
+import { CarChart } from '../../components/CarChart/CarChart';
 
 function Landing() {
+  const [searchVisible, setSearchVisible] = useState(false);
+  const showSearch = () => {
+    setSearchVisible(true);
+  };
+  const handleOk = () => {
+    setSearchVisible(false);
+  };
+
+  const handleCancel = () => {
+    setSearchVisible(false);
+  };
   const navigate = useNavigate();
   function handleLogout() {
     localStorage.clear();
@@ -28,22 +42,22 @@ function Landing() {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item mx-2">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="#ourservices">
                   Our Services
                 </a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="#section-cta">
                   Why Us
                 </a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link" href="/">
-                  Testimonial
+                <a class="nav-link" href="#car-chart">
+                  Chart
                 </a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="#section-faq">
                   FAQ
                 </a>
               </li>
@@ -62,9 +76,12 @@ function Landing() {
             <div class="col-lg-6 my-auto pt-4">
               <h1>Sewa & Rental Mobil Terbaik di kawasan (Lokasimu)</h1>
               <p>Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.</p>
-              <button type="submit" class="sewabtn" onClick={() => navigate('cars')}>
+              <button type="submit" class="sewabtn" onClick={showSearch}>
                 Mulai Sewa Mobil
               </button>
+              <Modal visible={searchVisible} onOk={handleOk} onCancel={handleCancel} centered="true" width={1900} footer={null} closable={false} bodyStyle={{ padding: 0, height: 0 }}>
+                <Search />
+              </Modal>
             </div>
             <div class="col-lg-6 position-relative" style={{ height: '400px' }}>
               <img src={mobil} alt="mobil" class="img-fluid img-hero" />
@@ -72,6 +89,12 @@ function Landing() {
           </div>
         </div>
       </section>
+      <h1 id="car-chart" className="text-center pt-4">
+        Chart Peminat Mobil
+      </h1>
+      <div className="d-flex justify-content-center ">
+        <CarChart />
+      </div>
       <section id="ourservices">
         <div class="container svc-container mb-5">
           <div class="row">
@@ -110,9 +133,12 @@ function Landing() {
               <div class="cta-card p-5 my-auto mx-auto">
                 <h1 class="mb-3 mt-3 cta-h1">Sewa Mobil di (Lokasimu) Sekarang</h1>
                 <p class="mx-auto mb-5 section-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <button type="submit" class="sewabtn section-btn" onClick={() => navigate('cars')}>
+                <button type="submit" class="sewabtn" onClick={showSearch}>
                   Mulai Sewa Mobil
                 </button>
+                <Modal visible={searchVisible} onOk={handleOk} onCancel={handleCancel} centered="true" width={1900} footer={null} closable={false} bodyStyle={{ padding: 0, height: 0 }}>
+                  <Search />
+                </Modal>
               </div>
             </div>
           </div>
