@@ -117,7 +117,6 @@ function AddNewCar() {
                               })
                             }
                             style={{ display: 'none' }}
-                            onChange="getNameFile(this.value)"
                           />
                           <label for="formFile" id="file-input" class="form-control icon text-secondary">
                             No file selected
