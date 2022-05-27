@@ -106,17 +106,15 @@ function AddNewCar() {
                       <div class="col-lg-9">
                         <div class="input-group">
                           <input
-                            class="form-control"
                             type="file"
-                            id="formFile"
-                            value={addCar.image}
                             onChange={(e) =>
                               setAddCar({
                                 ...addCar,
-                                image: e.target.value,
+                                image: e.target.files[0],
                               })
                             }
-                            style={{ display: 'none' }}
+                            class="form-control"
+                            // id="formFile"
                           />
                           <label for="formFile" id="file-input" class="form-control icon text-secondary">
                             No file selected
