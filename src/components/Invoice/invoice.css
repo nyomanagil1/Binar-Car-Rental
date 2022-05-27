@@ -1,0 +1,20 @@
+.card-invoice-btn {
+  position: absolute;
+  top: 40px;
+  right: 45px;
+}
+
+.card-invoice-btn {
+  display: flex;
+  align-items: center;
+  width: 97px;
+  height: 36px;
+  border-color: #0d28a6;
+  color: #0d28a6;
+  font-weight: bold;
+}
+
+.card-invoice-btn:hover {
+  background-color: #0d28a6;
+  color: white;
+}

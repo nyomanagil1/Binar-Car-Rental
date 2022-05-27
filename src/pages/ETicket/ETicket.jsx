@@ -3,8 +3,8 @@ import './ETicket.css';
 import logo from '../Landing/img/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
-import { ArrowLeftOutlined, CheckCircleOutlined, DownloadOutlined } from '@ant-design/icons';
-import { Breadcrumb, Button } from 'antd';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+import { Breadcrumb } from 'antd';
 import check from './img/check.svg';
 import lastcheck from './img/lastcheck.svg';
 import success from './img/success.svg';
@@ -66,7 +66,7 @@ function ETicket() {
               </h5>
               <div className="order-id pt-1">
                 <h5>Tiket</h5>
-                <p>Order ID: xxxxxxx</p>
+                <p>Order ID: 123456789101112</p>
               </div>
               <div className="ms-auto pt-3 pe-2 order-breadcrumb">
                 <Breadcrumb separator="-----">
@@ -101,20 +101,14 @@ function ETicket() {
                 <p>Tunjukkan invoice ini ke petugas BCR di titik temu.</p>
                 <div className="pt-4">
                   <div class="card card-invoice h-100 p-1 mx-auto">
-                    <div class="card-body p-4">
+                    <div class="card-invoice-body p-4">
                       <div className="card-content d-flex">
-                        <div className="card-invoice-title ps-5">
+                        <div className="card-invoice-title">
                           <h1>Invoice</h1>
-                          <p>XXXXXXXXX</p>
-                        </div>
-                        <div className="card-invoice-btn ms-auto pt-2 pe-5">
-                          <Button style={{ display: 'flex', alignItems: 'center', width: '97px', height: '36px', borderColor: '#0D28A6', color: '#0D28A6', fontWeight: 'bold' }}>
-                            <DownloadOutlined />
-                            Unduh
-                          </Button>
+                          <p>123456789101112</p>
                         </div>
                       </div>
-                      <div className="card-invoice d-flex flex-column justify-content-center align-items-center">
+                      <div className="d-flex flex-column justify-content-center align-items-center">
                         <Invoice />
                       </div>
                     </div>

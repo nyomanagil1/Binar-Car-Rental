@@ -8,7 +8,7 @@ import logo from '../Landing/img/logo.svg';
 import Footer from '../../components/Footer/Footer';
 import { Image } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostByID } from '../../redux/action/postByIDAction';
+import {  getPostByIDCustomer } from '../../redux/action/postByIDAction';
 
 function CarDetail() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function CarDetail() {
   const { isLoading, data: post } = useSelector((state) => state.postByID);
 
   useEffect(() => {
-    dispatch(getPostByID(id));
+    dispatch(getPostByIDCustomer(id));
   }, []);
   return (
     <>

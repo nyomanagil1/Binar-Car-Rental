@@ -1,7 +1,30 @@
 import axios from 'axios';
-import { GET_CAR } from '../types';
+import { CREATE_POST, GET_CAR } from '../types';
 
 export const getPost = () => {
+  return (dispatch) => {
+    dispatch({ type: `${GET_CAR}_LOADING` });
+
+    axios({
+      method: 'GET',
+      url: 'https://rent-cars-api.herokuapp.com/admin/order',
+    })
+      .then((response) => {
+        dispatch({
+          type: `${GET_CAR}_FULFILLED`,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: `${GET_CAR}_ERROR`,
+          error: error.message,
+        });
+      });
+  };
+};
+
+export const getPostCustomer = () => {
   return (dispatch) => {
     dispatch({ type: `${GET_CAR}_LOADING` });
 
@@ -18,6 +41,30 @@ export const getPost = () => {
       .catch((error) => {
         dispatch({
           type: `${GET_CAR}_ERROR`,
+          error: error.message,
+        });
+      });
+  };
+};
+
+export const createPost = (data) => {
+  return (dispatch) => {
+    dispatch({ type: `${CREATE_POST}_LOADING` });
+
+    axios({
+      method: 'POST',
+      url: 'https://rent-cars-api.herokuapp.com/admin/car',
+      data,
+    })
+      .then(() => {
+        dispatch({
+          type: `${CREATE_POST}_FULFILLED`,
+        });
+        dispatch(getPost());
+      })
+      .catch((error) => {
+        dispatch({
+          type: `${CREATE_POST}_ERROR`,
           error: error.message,
         });
       });

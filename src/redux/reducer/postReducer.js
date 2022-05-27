@@ -1,4 +1,4 @@
-import { GET_CAR } from '../types';
+import { CREATE_POST, GET_CAR } from '../types';
 
 const initialState = {
   data: [],
@@ -25,6 +25,22 @@ const postReducer = (state = initialState, action) => {
         isLoading: false,
         error: error,
       };
+      case `${CREATE_POST}_LOADING`:
+        return {
+          ...state,
+          isLoading: true,
+        };
+      case `${CREATE_POST}_FULFILLED`:
+        return {
+          ...state,
+          isLoading: false,
+        };
+      case `${CREATE_POST}_ERROR`:
+        return {
+          ...state,
+          isLoading: false,
+          error: error,
+        };
     default:
       return {
         ...state,

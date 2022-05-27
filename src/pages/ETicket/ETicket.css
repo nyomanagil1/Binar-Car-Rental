@@ -8,6 +8,15 @@
   color: #0d28a6;
 }
 
+.card-invoice-body {
+  width: 100%;
+}
+
+.card-invoice-title {
+  text-align: left;
+  padding-left: 20px;
+}
+
 .card-invoice-title h1 {
   font-size: 24px;
   font-weight: 700;
@@ -18,6 +27,8 @@
 }
 
 .card-invoice {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;

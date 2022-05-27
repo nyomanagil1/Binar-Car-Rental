@@ -9,7 +9,7 @@ import Footer from '../../components/Footer/Footer';
 import { Image, Spin } from 'antd';
 import Search from '../../components/Search/Search';
 import { LoadingOutlined } from '@ant-design/icons';
-import { getPost } from '../../redux/action/postAction';
+import { getPostCustomer } from '../../redux/action/postAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 function CarsCustomer() {
@@ -29,7 +29,7 @@ function CarsCustomer() {
   };
 
   useEffect(() => {
-    dispatch(getPost());
+    dispatch(getPostCustomer());
   }, []);
 
   return (
