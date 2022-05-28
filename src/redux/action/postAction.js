@@ -55,6 +55,9 @@ export const createPost = (data) => {
       method: 'POST',
       url: 'https://rent-cars-api.herokuapp.com/admin/car',
       data,
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
     })
       .then(() => {
         dispatch({

@@ -1,29 +1,65 @@
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Button, Upload } from 'antd';
 import './addNewCar.css';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, getPost } from '../../redux/action/postAction';
+import { UploadOutlined } from '@ant-design/icons';
 
 function AddNewCar() {
+  const [fileList, setFileList] = useState([]);
+  const [uploading, setUploading] = useState(false);
   const dispatch = useDispatch();
   const { isLoading, data: post } = useSelector((state) => state.post);
   const navigate = useNavigate();
   const [addCar, setAddCar] = useState({
     name: '',
     price: '',
-    image: '',
+    image: [],
     category: 'small',
     status: true,
   });
 
-  const handleSubmit = (e) => {
-    dispatch(createPost(addCar));
+  const handleUpload = () => {
+    const formData = new FormData();
+    formData.append('name', addCar.name);
+    formData.append('price', addCar.price);
+    formData.append('category', addCar.category);
+    formData.append('status', addCar.status);
+    formData.append('image', addCar.image);
+    setUploading(true);
+
+    dispatch(createPost(formData));
+  };
+
+  const props = {
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+    },
+    beforeUpload: (file) => {
+      setFileList([...fileList, file]);
+      return false;
+    },
+    fileList,
   };
 
   useEffect(() => {
     dispatch(getPost());
   }, []);
+
+  // const handleSubmit = async (payload) => {
+  //   const formData = new FormData();
+  //   formData.append('name', addCar.name);
+  //   formData.append('price', addCar.price);
+  //   formData.append('image', addCar.image[0]);
+  //   dispatch(createPost(formData));
+  //   // console.log(formData);
+  //   // dispatch(createPost(addCar));
+  //   // console.log(addCar);
+  // };
 
   return (
     <>
@@ -104,25 +140,19 @@ function AddNewCar() {
                         </label>
                       </div>
                       <div class="col-lg-9">
-                        <div class="input-group">
-                          <input
-                            type="file"
+                        <Upload {...props}>
+                          <Button
                             onChange={(e) =>
                               setAddCar({
                                 ...addCar,
-                                image: e.target.files[0],
+                                image: e.target.image[0],
                               })
                             }
-                            class="form-control"
-                            // id="formFile"
-                          />
-                          <label for="formFile" id="file-input" class="form-control icon text-secondary">
-                            No file selected
-                          </label>
-                        </div>
-                        <small id="fileHelp" class="form-text text-muted" style={{ marginLeft: '1px' }}>
-                          File size max. 2 MB
-                        </small>
+                            icon={<UploadOutlined />}
+                          >
+                            Select File
+                          </Button>
+                        </Upload>
                       </div>
                     </div>
 
@@ -182,15 +212,17 @@ function AddNewCar() {
             <button onClick={() => navigate('/list-car')} type="button" class="btn-custom">
               Cancel
             </button>
-            <button
+            <Button
               onClick={() => {
-                handleSubmit();
+                // handleSubmit();
+                handleUpload();
               }}
+              loading={uploading}
               type="button"
               class="btn-custom-save"
             >
               Save
-            </button>
+            </Button>
           </div>
         </div>
       </section>
