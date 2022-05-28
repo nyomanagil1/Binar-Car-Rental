@@ -7,7 +7,7 @@ export const getPost = () => {
 
     axios({
       method: 'GET',
-      url: 'https://rent-cars-api.herokuapp.com/admin/order',
+      url: 'https://rent-car-appx.herokuapp.com/admin/order',
     })
       .then((response) => {
         dispatch({
@@ -30,7 +30,7 @@ export const getPostCustomer = () => {
 
     axios({
       method: 'GET',
-      url: 'https://rent-cars-api.herokuapp.com/admin/car',
+      url: 'https://rent-car-appx.herokuapp.com/admin/car',
     })
       .then((response) => {
         dispatch({
@@ -53,7 +53,7 @@ export const createPost = (data) => {
 
     axios({
       method: 'POST',
-      url: 'https://rent-cars-api.herokuapp.com/admin/car',
+      url: 'https://rent-car-appx.herokuapp.com/admin/car',
       data,
       headers: {
         'content-type': 'multipart/form-data',
