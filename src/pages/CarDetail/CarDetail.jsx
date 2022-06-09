@@ -8,13 +8,13 @@ import logo from '../Landing/img/logo.svg';
 import Footer from '../../components/Footer/Footer';
 import { Image } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import {  getPostByIDCustomer } from '../../redux/action/postByIDAction';
+import { getPostByIDCustomer } from '../../redux/action/postByIDAction';
 
 function CarDetail() {
   const navigate = useNavigate();
   function handleLogout() {
     localStorage.clear();
-    navigate('login', { replace: true });
+    navigate('/login', { replace: true });
   }
 
   const dispatch = useDispatch();

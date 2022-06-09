@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function CarsCustomer() {
   function handleLogout() {
     localStorage.clear();
-    navigate('login', { replace: true });
+    navigate('/login', { replace: true });
   }
   const antIcon = <LoadingOutlined style={{ fontSize: 100 }} spin />;
   const navigate = useNavigate();

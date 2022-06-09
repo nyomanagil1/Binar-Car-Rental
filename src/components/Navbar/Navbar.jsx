@@ -11,7 +11,7 @@ function Navbar() {
 
   function handleLogout() {
     localStorage.clear();
-    navigate('login', { replace: true });
+    navigate('/login', { replace: true });
   }
 
   const menu = (

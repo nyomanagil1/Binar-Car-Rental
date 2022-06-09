@@ -30,7 +30,7 @@ function Search() {
             <Input placeholder="Jumlah Penumpang" style={{ width: 250 }} />
           </div>
           <div className="card-content d-flex align-items-end">
-            <button onClick={() => navigate('cars')} class="sewabtn">
+            <button onClick={() => navigate('/cars')} class="sewabtn">
               Cari Mobil
             </button>
           </div>

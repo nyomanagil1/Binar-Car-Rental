@@ -30,7 +30,7 @@ export const getPostByIDCustomer = (id) => {
 
     axios({
       method: 'GET',
-      url: `https://rent-cars-api.herokuapp.com/admin/car/${id}`,
+      url: `https://rent-car-appx.herokuapp.com/admin/car/${id}`,
     })
       .then((response) => {
         dispatch({
